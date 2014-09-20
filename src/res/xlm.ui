@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BaseXLMConfig</class>
+ <widget class="QDialog" name="BaseXLMConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>380</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>xleapmouse</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="track_tab">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <attribute name="title">
+       <string>Tracking</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="4" column="0" colspan="2">
+        <widget class="QGroupBox" name="track_tweak_group">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="title">
+          <string>Motion Tweaks</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="base_spinbox">
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_speed">
+            <property name="text">
+             <string>Speed Multiplier</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QDoubleSpinBox" name="mult_spinbox">
+            <property name="toolTip">
+             <string>Speed multiplier as hand moves toward sensor</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_mindist">
+            <property name="text">
+             <string>Min Distance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="cutoff_spinbox">
+            <property name="toolTip">
+             <string>Minimum hand distance from sensor</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="minimum">
+             <double>-5.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>5.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_base">
+            <property name="text">
+             <string>Base Speed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_small_motion">
+            <property name="text">
+             <string>Small Motion Bias</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDoubleSpinBox" name="small_motion_spinbox">
+            <property name="toolTip">
+             <string>Value 0.0-0.3 added to smooth very small motions</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="maximum">
+             <double>0.300000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <layout class="QFormLayout" name="formLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Toggle Finger:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Track Finger:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="tracking_finger_combo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Track Finger&lt;/span&gt; is the finger used for &lt;span style=&quot; font-weight:600;&quot;&gt;position&lt;/span&gt;.  Using the middle finger is recommended.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>Thumb</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Index</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Middle</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ring</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pinky</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="toggle_finger_combo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Toggle Finger&lt;/span&gt; is used for toggling &lt;span style=&quot; font-weight:600;&quot;&gt;tracking&lt;/span&gt;, that is, whether xleapmouse is &amp;quot;on&amp;quot; or not. To toggle tracking, &amp;quot;tap&amp;quot; towards the screen with &lt;span style=&quot; font-style:italic;&quot;&gt;only&lt;/span&gt; the tap finger extended.  Using the pinky finger is recommended for this.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>Thumb</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Index</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Middle</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ring</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pinky</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Screen Tap Tweaks (for toggling)</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Min Forward Velocity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="st_minforward">
+            <property name="toolTip">
+             <string>Gesture.ScreenTap.MinForwardVelocity</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="maximum">
+             <double>10000.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QDoubleSpinBox" name="st_mindist">
+            <property name="toolTip">
+             <string>Gesture.ScreenTap.MinDistance</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>History Seconds</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Min Distance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="st_hist">
+            <property name="toolTip">
+             <string>Gesture.ScreenTap.HistorySeconds</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="click_tab">
+      <attribute name="title">
+       <string>Clicking</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="buttons_groupbox">
+         <property name="title">
+          <string>Buttons</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item row="0" column="3">
+           <widget class="QRadioButton" name="thumb_2">
+            <property name="text">
+             <string>Mid</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">thumb_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QRadioButton" name="index_1">
+            <property name="text">
+             <string>Left</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">index_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QRadioButton" name="index_3">
+            <property name="text">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">index_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QRadioButton" name="middle_none">
+            <property name="text">
+             <string>None</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">middle_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QRadioButton" name="middle_3">
+            <property name="text">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">middle_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QRadioButton" name="pinky_none">
+            <property name="text">
+             <string>None</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">pinky_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="thumb_none">
+            <property name="text">
+             <string>None</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">thumb_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QRadioButton" name="index_none">
+            <property name="text">
+             <string>None</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">index_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QRadioButton" name="thumb_1">
+            <property name="text">
+             <string>Left</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">thumb_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QRadioButton" name="ring_none">
+            <property name="text">
+             <string>None</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">ring_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QRadioButton" name="middle_1">
+            <property name="text">
+             <string>Left</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">middle_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QRadioButton" name="thumb_3">
+            <property name="text">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">thumb_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QRadioButton" name="middle_2">
+            <property name="text">
+             <string>Mid</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">middle_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QRadioButton" name="index_2">
+            <property name="text">
+             <string>Mid</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">index_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QRadioButton" name="ring_1">
+            <property name="text">
+             <string>Left</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">ring_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QRadioButton" name="ring_3">
+            <property name="text">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">ring_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QRadioButton" name="ring_2">
+            <property name="text">
+             <string>Mid</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">ring_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QRadioButton" name="pinky_1">
+            <property name="text">
+             <string>Left</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">pinky_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_index">
+            <property name="text">
+             <string>Index Finger</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QRadioButton" name="pinky_2">
+            <property name="text">
+             <string>Mid</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">pinky_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QRadioButton" name="pinky_3">
+            <property name="text">
+             <string>Right</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">pinky_bg</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_thumb">
+            <property name="text">
+             <string>Thumb</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_pinky">
+            <property name="text">
+             <string>Pinky</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_middle">
+            <property name="text">
+             <string>Middle Finger</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_ring">
+            <property name="text">
+             <string>Ring Finger</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="tapgesture_group">
+         <property name="title">
+          <string>Tap Gesture Tweaks</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_mindist_2">
+            <property name="text">
+             <string>Min Distance</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="kt_mindist">
+            <property name="toolTip">
+             <string>Gesture.KeyTap.MinDistance</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="maximum">
+             <double>1000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_mindown">
+            <property name="text">
+             <string>Min Down Velocity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QDoubleSpinBox" name="kt_minvel">
+            <property name="toolTip">
+             <string>Gesture.KeyTap.MinDownVelocity</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>History Seconds</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="kt_hist">
+            <property name="toolTip">
+             <string>Gesture.KeyTap.HistorySeconds</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="scroll_tab">
+      <attribute name="title">
+       <string>Scrolling</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QFormLayout" name="formLayout_2">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMinimumSize</enum>
+         </property>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="scroll_finger_combo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Track Finger&lt;/span&gt; is the finger used for &lt;span style=&quot; font-weight:600;&quot;&gt;position&lt;/span&gt;.  Using the middle finger is recommended.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>Thumb</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Index</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Middle</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ring</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pinky</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Scroll Finger:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="revscroll_checkbox">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Making a circling motion scrolls in the opposite direction.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Reverse Scrolling</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Scroll Tweaks</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="2" column="1">
+           <widget class="QDoubleSpinBox" name="scrolldelay_spinbox">
+            <property name="toolTip">
+             <string>Delay between scroll clicks</string>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Scroll Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDoubleSpinBox" name="scrollradius_spinbox">
+            <property name="toolTip">
+             <string>Minimum circle radius to register</string>
+            </property>
+            <property name="minimum">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Scroll Radius</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Help</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Basic Usage&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Put your &lt;span style=&quot; font-style:italic;&quot;&gt;open &lt;/span&gt;hand into the LeapMotion's frame and move it around; this &lt;span style=&quot; font-weight:600;&quot;&gt;moves&lt;/span&gt; the cursor. Make a gentle downward tapping motion with your &lt;span style=&quot; font-style:italic;&quot;&gt;index&lt;/span&gt; finger to &lt;span style=&quot; font-weight:600;&quot;&gt;left-click&lt;/span&gt;, or your &lt;span style=&quot; font-style:italic;&quot;&gt;thumb&lt;/span&gt; to &lt;span style=&quot; font-weight:600;&quot;&gt;right-click&lt;/span&gt; (this can be reconfigured).&lt;/p&gt;&lt;p&gt;With a &lt;span style=&quot; font-style:italic;&quot;&gt;closed&lt;/span&gt; hand (thumb out is fine) and &lt;span style=&quot; font-style:italic;&quot;&gt;index finger&lt;/span&gt; out, make a small circling motion to &lt;span style=&quot; font-weight:600;&quot;&gt;scroll&lt;/span&gt;. Circling in the opposite direction scrolls the other way. You can configure which finger scrolls.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Pausing&lt;/span&gt;&lt;/p&gt;&lt;p&gt;With a &lt;span style=&quot; font-style:italic;&quot;&gt;closed&lt;/span&gt; hand, extend the &lt;span style=&quot; font-style:italic;&quot;&gt;pinky&lt;/span&gt; and make a &lt;span style=&quot; font-style:italic;&quot;&gt;forward-tapping motion&lt;/span&gt; (toward the screen). This will make xleapmouse &lt;span style=&quot; font-weight:600;&quot;&gt;sleep&lt;/span&gt;. You can &lt;span style=&quot; font-weight:600;&quot;&gt;wake&lt;/span&gt; it with the same motion.&lt;/p&gt;&lt;p&gt;Note: You may have to wave your open hand around in the LeapMotion's frame to pick up your hand before waking. This &lt;span style=&quot; font-style:italic;&quot;&gt;does not pause&lt;/span&gt; the LeapMotion's tracking, only xleapmouse.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>About</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;xleapmouse&lt;br/&gt;&lt;/span&gt;Copyright © 2014, Ryan Pavlik&lt;/p&gt;&lt;p&gt;xleapmouse is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/p&gt;&lt;p&gt;xleapmouse is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt;&lt;p&gt;You should have received a copy of the GNU General Public License along with xleapmouse. If not, see &amp;lt;&lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&amp;gt;.&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::RichText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Project Page&lt;/span&gt;&lt;/p&gt;&lt;p&gt;You should be able to find the latest version of this project at &amp;lt;&lt;a href=&quot;http://github.com/rpav/xleapmouse&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://github.com/rpav/xleapmouse&lt;/span&gt;&lt;/a&gt;&amp;gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="okcancel">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okcancel</sender>
+   <signal>accepted()</signal>
+   <receiver>BaseXLMConfig</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okcancel</sender>
+   <signal>rejected()</signal>
+   <receiver>BaseXLMConfig</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <buttongroups>
+  <buttongroup name="pinky_bg"/>
+  <buttongroup name="thumb_bg"/>
+  <buttongroup name="ring_bg"/>
+  <buttongroup name="index_bg"/>
+  <buttongroup name="middle_bg"/>
+ </buttongroups>
+</ui>

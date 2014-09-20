@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+ <qresource>
+   <file>xleapmouse.png</file>
+   <file>xsleepmouse.png</file>
+ </qresource>
+ </RCC>
