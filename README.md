@@ -107,6 +107,13 @@ Note: Fingers should be specified as a number, 0-4, or a space-
 
 ## Q&A
 
+**I ran it and I don't see anything.  Where's the GUI?**
+
+This appears first as a tray icon you can right-click on.  Given you
+need this for `LeapControlPanel`, you probably have it already.  If
+not, and you're not running a desktop environment that has one
+already, try [stalonetray](http://stalonetray.sourceforge.net/).
+
 **I modified all the settings and it doesn't work very well!**
 
 That's not a question, and the defaults are there for a reason.  Try
