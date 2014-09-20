@@ -5,12 +5,12 @@ include $(top_srcdir)/make-extras
 nodistdir = .
 
 noinst_HEADERS = xleapmouse.h trivconfig.h
-nodist_HEADERS =
+nodist_noinst_HEADERS =
 BUILT_SOURCES =
 
 if WITH_QT
 noinst_HEADERS += xlmgui.h
-nodist_HEADERS += uic_xlmconfig.h
+nodist_noinst_HEADERS += uic_xlmconfig.h
 BUILT_SOURCES += uic_xlmconfig.h
 endif
 
