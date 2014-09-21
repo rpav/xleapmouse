@@ -6,8 +6,8 @@ fork/total rewrite of the PyLeapMouse finger controller (also
 available on github).  This has the following features:
 
 * **Motion**: Move your hand around with all fingers out, mouse moves.
-  "Picking up" and "dropping" the controller is easy, motion is
-  relative.  Jumping cursor has been minimized.
+  "Picking up" and "dropping" the cursor is easy, motion is relative.
+  Jumping cursor has been minimized.
 * **Clicking**: Clicking is possible by a gentle downward tapping of a
   finger, by default the index finger (left click) and thumb (right
   click).
