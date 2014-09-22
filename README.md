@@ -82,7 +82,7 @@ Tracking:
   --base-scale F             Base speed (default: 10.0)
   --scale-factor F           Speed multiplier as hand moves toward sensor
                                (default: 30.0)
-  --small-motion-bias F      Value 0.0-0.3 added to smooth very small motions
+  --small-motion-cutoff F    Accumulate small motions larger than this
                                (default: 0.2)
 
 Scrolling:
