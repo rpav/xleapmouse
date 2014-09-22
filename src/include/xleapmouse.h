@@ -49,7 +49,7 @@ struct MouseConfig {
     Finger::Type track_finger;
     float distance_cutoff;
     float base_scale, scale_factor;
-    float small_motion_bias;
+    float small_motion_cutoff;
 
     // Clicking
     FingerTypeList lclick_fingers;
@@ -112,6 +112,7 @@ class MouseListener : public Listener {
     // Tracking
     bool _blank_frame;
     float _lastx, _lasty;
+    float _xaccum, _yaccum;
     bool _tracking;
 
     // Scrolling

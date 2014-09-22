@@ -120,14 +120,14 @@
           <item row="3" column="0">
            <widget class="QLabel" name="label_small_motion">
             <property name="text">
-             <string>Small Motion Bias</string>
+             <string>Small Motion Cutoff</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
            <widget class="QDoubleSpinBox" name="small_motion_spinbox">
             <property name="toolTip">
-             <string>Value 0.0-0.3 added to smooth very small motions</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For smoothing: motions smaller than this will not be accumulated; larger than this will add up over time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -909,6 +909,45 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>tracking_finger_combo</tabstop>
+  <tabstop>toggle_finger_combo</tabstop>
+  <tabstop>cutoff_spinbox</tabstop>
+  <tabstop>base_spinbox</tabstop>
+  <tabstop>mult_spinbox</tabstop>
+  <tabstop>small_motion_spinbox</tabstop>
+  <tabstop>st_minforward</tabstop>
+  <tabstop>st_hist</tabstop>
+  <tabstop>st_mindist</tabstop>
+  <tabstop>thumb_none</tabstop>
+  <tabstop>thumb_1</tabstop>
+  <tabstop>thumb_2</tabstop>
+  <tabstop>thumb_3</tabstop>
+  <tabstop>index_none</tabstop>
+  <tabstop>index_1</tabstop>
+  <tabstop>index_2</tabstop>
+  <tabstop>index_3</tabstop>
+  <tabstop>middle_none</tabstop>
+  <tabstop>middle_1</tabstop>
+  <tabstop>middle_2</tabstop>
+  <tabstop>middle_3</tabstop>
+  <tabstop>ring_none</tabstop>
+  <tabstop>ring_1</tabstop>
+  <tabstop>ring_2</tabstop>
+  <tabstop>ring_3</tabstop>
+  <tabstop>pinky_none</tabstop>
+  <tabstop>pinky_1</tabstop>
+  <tabstop>pinky_2</tabstop>
+  <tabstop>pinky_3</tabstop>
+  <tabstop>kt_mindist</tabstop>
+  <tabstop>kt_hist</tabstop>
+  <tabstop>kt_minvel</tabstop>
+  <tabstop>scroll_finger_combo</tabstop>
+  <tabstop>revscroll_checkbox</tabstop>
+  <tabstop>scrolldelay_spinbox</tabstop>
+  <tabstop>scrollradius_spinbox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -945,10 +984,10 @@
   </connection>
  </connections>
  <buttongroups>
+  <buttongroup name="index_bg"/>
   <buttongroup name="pinky_bg"/>
   <buttongroup name="thumb_bg"/>
   <buttongroup name="ring_bg"/>
-  <buttongroup name="index_bg"/>
   <buttongroup name="middle_bg"/>
  </buttongroups>
 </ui>

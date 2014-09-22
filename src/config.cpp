@@ -51,7 +51,7 @@ public:
         add("distance-cutoff", &c.distance_cutoff);
         add("base-scale", &c.base_scale);
         add("scale-factor", &c.scale_factor);
-        add("small-motion-bias", &c.small_motion_bias);
+        add("small-motion-cutoff", &c.small_motion_cutoff);
 
         add("lclick-fingers", &c.lclick_fingers);
         add("mclick-fingers", &c.mclick_fingers);
@@ -123,7 +123,7 @@ void usage() {
 "  --base-scale F             Base speed (default: 10.0)\n"
 "  --scale-factor F           Speed multiplier as hand moves toward sensor\n"
 "                               (default: 30.0)\n"
-"  --small-motion-bias F      Value 0.0-0.3 added to smooth very small motions\n"
+"  --small-motion-cutoff F      Value 0.0-0.3 added to smooth very small motions\n"
 "                               (default: 0.2)\n"
 "\n"
 "Scrolling:\n"
@@ -158,7 +158,7 @@ static struct option options[] = {
     { "rclick-fingers",            required_argument, 0,  0  },
     { "distance-cutoff",           required_argument, 0,  0, },
     { "base-scale",                required_argument, 0,  0, },
-    { "small-motion-bias",         required_argument, 0,  0, },
+    { "small-motion-cutoff",       required_argument, 0,  0, },
     { "scroll-reverse",            required_argument, 0,  0, },
     { "scroll-radius",             required_argument, 0,  0, },
     { "scroll-delay",              required_argument, 0,  0, },

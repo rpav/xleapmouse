@@ -83,7 +83,7 @@ void XLMConfig::on_mult_spinbox_valueChanged(double v) {
 }
 
 void XLMConfig::on_small_motion_spinbox_valueChanged(double v) {
-    _tmpconfig.small_motion_bias = v;
+    _tmpconfig.small_motion_cutoff = v;
 }
 
 void XLMConfig::on_st_minforward_valueChanged(double v) {
@@ -157,7 +157,7 @@ void XLMConfig::setTrackingPage() {
     cutoff_spinbox->setValue(c.distance_cutoff);
     base_spinbox->setValue(c.base_scale);
     mult_spinbox->setValue(c.scale_factor);
-    small_motion_spinbox->setValue(c.small_motion_bias);
+    small_motion_spinbox->setValue(c.small_motion_cutoff);
 
     st_minforward->setValue(c.screentap_minforwardvelocity);
     st_hist->setValue(c.screentap_historyseconds);

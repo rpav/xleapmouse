@@ -29,15 +29,17 @@ MouseListener::MouseListener()
     : _debug(cerr), _osd(cout) {
 
     // Tracking
-    conf.track_finger      = Finger::TYPE_MIDDLE;
-    conf.distance_cutoff   = 0.10;
-    conf.base_scale        = 10.0;
-    conf.scale_factor      = 30.0;
-    conf.small_motion_bias = 0.2;
+    conf.track_finger        = Finger::TYPE_MIDDLE;
+    conf.distance_cutoff     = 0.10;
+    conf.base_scale          = 10.0;
+    conf.scale_factor        = 30.0;
+    conf.small_motion_cutoff = 0.2;
 
     _blank_frame       = true;
     _lastx             = 0.0;
     _lasty             = 0.0;
+    _xaccum            = 0.0;
+    _yaccum            = 0.0;
     _tracking          = true;
 
     // Clicking
@@ -227,19 +229,22 @@ void MouseListener::move(Vector xys) {
 
     if(scale < 0.0) {
         scale = -scale;
-        dx = (sx - _lastx) / scale;
-        dy = (sy - _lasty) / scale;
+        dx = _xaccum + (sx - _lastx) / scale;
+        dy = _yaccum + (sy - _lasty) / scale;
     } else {
-        dx = (sx - _lastx) * scale;
-        dy = (sy - _lasty) * scale;
+        dx = _xaccum + (sx - _lastx) * scale;
+        dy = _yaccum + (sy - _lasty) * scale;
     }
 
-    // "Round harder" near zero to prevent some stop-and-go
-    if(dx < 0.0 && dx > -1.0) dx -= conf.small_motion_bias;
-    else if(dx < 1.0)         dx += conf.small_motion_bias;
+    if(dx < 1.0 && dx > -1.0 && fabs(dx) >= conf.small_motion_cutoff)
+        _xaccum = dx;
+    else
+        _xaccum = 0.0;
 
-    if(dy < 0.0 && dy > -1.0) dy -= conf.small_motion_bias;
-    else if(dy < 1.0)         dy += conf.small_motion_bias;
+    if(dy < 1.0 && dy > -1.0 && fabs(dy) >= conf.small_motion_cutoff)
+        _yaccum = dy;
+    else
+        _yaccum = 0.0;
 
     move(roundf(dx), roundf(dy));
     setLast(sx, sy);
