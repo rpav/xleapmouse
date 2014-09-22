@@ -181,7 +181,7 @@ void MouseListener::doGesture(Frame frame, CircleGesture cg) {
 
         if(cg.progress() > _scroll_last + conf.scroll_delay) {
             ScrollDirection d = (cg.normal()[0] > 0.0) ? SCROLL_UP : SCROLL_DOWN;
-            
+
             if(conf.scroll_reverse)
                 d = (ScrollDirection)!(int)d;
 
@@ -238,12 +238,12 @@ void MouseListener::move(Vector xys) {
 
     if(dx < 1.0 && dx > -1.0 && fabs(dx) >= conf.small_motion_cutoff)
         _xaccum = dx;
-    else
+    else if(dx >= 1.0 || dx <= -1.0)
         _xaccum = 0.0;
 
     if(dy < 1.0 && dy > -1.0 && fabs(dy) >= conf.small_motion_cutoff)
         _yaccum = dy;
-    else
+    else if(dy >= 1.0 || dy <= -1.0)
         _yaccum = 0.0;
 
     move(roundf(dx), roundf(dy));
