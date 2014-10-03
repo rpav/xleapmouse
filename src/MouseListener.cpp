@@ -115,7 +115,7 @@ void MouseListener::doMotion(FingerList fingers) {
 
     if(distance < conf.distance_cutoff)
         _blank_frame = true;
-    else if(distance >= conf.distance_cutoff && finger.touchZone() > 0) {
+    else if(distance >= conf.distance_cutoff) {
         Vector xys = getXYScale(finger, distance);
 
         if(_blank_frame)
