@@ -105,7 +105,7 @@ generate () {
         fi
 
 	cd $i
-	aclocal $ACLOCAL_FLAGS
+	aclocal -I aclocal --install $ACLOCAL_FLAGS
 
 	# optionally feature autoheader
 	if grep AC_CONFIG_HEADERS configure.ac >/dev/null ; then
