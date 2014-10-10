@@ -105,8 +105,7 @@ void MouseListener::onFrame(const Controller &c) {
 void MouseListener::doMotion(FingerList fingers) {
     if(!_tracking) return;
 
-    fingers.extended();
-    fingers.fingerType(conf.track_finger);
+    FingerList fl = fingers.extended().fingerType(conf.track_finger);
 
     if(fingers.isEmpty()) return;
 
