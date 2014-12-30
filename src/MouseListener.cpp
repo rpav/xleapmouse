@@ -23,6 +23,24 @@
 using namespace std;
 using namespace Leap;
 
+/* Apparently the builtin stuff is broken as of 2.2.1 */
+static int count_extended(FingerList &fl, int finger = -1) {
+    int extended = 0;
+
+    for(int i = 0; i < fl.count(); i++) {
+        Finger f = fl[i];
+
+        if(finger > 0) {
+            if(f.isExtended() && f.type() == (Finger::Type)finger)
+                extended++;
+        } else if(f.isExtended()) {
+            extended++;
+        }
+    }
+
+    return extended;
+}
+
 // ---- Public
 
 MouseListener::MouseListener()
@@ -35,12 +53,14 @@ MouseListener::MouseListener()
     conf.scale_factor        = 30.0;
     conf.small_motion_cutoff = 0.2;
 
-    _blank_frame       = true;
-    _lastx             = 0.0;
-    _lasty             = 0.0;
-    _xaccum            = 0.0;
-    _yaccum            = 0.0;
-    _tracking          = true;
+    _blank_frame = true;
+    _lastx       = 0.0;
+    _lasty       = 0.0;
+    _xaccum      = 0.0;
+    _yaccum      = 0.0;
+    _tracking    = true;
+    _track_start = 0.0;
+    _track_delay = 0.05;
 
     // Clicking
     conf.lclick_fingers.push_back(Finger::TYPE_INDEX);
@@ -99,17 +119,22 @@ void MouseListener::onFrame(const Controller &c) {
         updateLeapConfig(c.config());
 
     doGestures(frame);
-    doMotion(hand.fingers());
+
+    if((frame.timestamp()/1000000.0 - _track_start) > _track_delay)
+        doMotion(frame, hand.fingers());
 }
 
-void MouseListener::doMotion(FingerList fingers) {
+void MouseListener::doMotion(Frame &frame, FingerList fingers) {
     if(!_tracking) return;
 
-    FingerList fl = fingers.extended().fingerType(conf.track_finger);
+    int extended = count_extended(fingers);
+    Finger finger = fingers.fingerType(conf.track_finger)[0];
 
-    if(fingers.isEmpty()) return;
+    if(!finger.isExtended() || extended < 4) {
+        trackDelayStart(frame);
+        return;
+    }
 
-    Finger finger = fingers[0];
     float distance = getDistance(finger);
 
     if(distance < conf.distance_cutoff)
@@ -122,6 +147,11 @@ void MouseListener::doMotion(FingerList fingers) {
         else
             move(xys);
     }
+}
+
+void MouseListener::trackDelayStart(Frame &frame) {
+    _track_start = frame.timestamp()/1000000.0;
+    _blank_frame = true;
 }
 
 void MouseListener::doGestures(Frame frame) {
@@ -164,13 +194,15 @@ void MouseListener::doGesture(Frame frame __attribute__((unused)),
 }
 
 void MouseListener::doGesture(Frame frame, CircleGesture cg) {
-    FingerList fl = frame.fingers().extended();
+    FingerList fl = frame.fingers();
+    int extended = count_extended(fl);
+    Finger f = fl.fingerType(conf.scroll_finger)[0];
 
-    if(fl.isEmpty()) return;
+    if(!f.isExtended()) return;
 
-    if(fl.count() < 3 && !fl.fingerType(conf.scroll_finger).isEmpty()) {
+    if(extended < 3) {
         if(cg.state() == CircleGesture::STATE_STOP) {
-            scrollEnd();
+            scrollEnd(frame);
             return;
         }
 
@@ -188,12 +220,15 @@ void MouseListener::doGesture(Frame frame, CircleGesture cg) {
             _scroll_last = cg.progress();
         }
     } else if(_scrolling) {
-        scrollEnd();
+        scrollEnd(frame);
     }
 }
 
 void MouseListener::doGesture(Frame frame, ScreenTapGesture st) {
-    if(frame.fingers().extended().count() > 1 || !st.pointable().isFinger())
+    FingerList fl = frame.fingers();
+    int extended = count_extended(fl);
+
+    if(extended > 1 || !st.pointable().isFinger())
         return;
 
     Finger f = Finger(st.pointable());
@@ -256,10 +291,11 @@ void MouseListener::scroll(ScrollDirection d) {
     }
 }
 
-void MouseListener::scrollEnd() {
+void MouseListener::scrollEnd(Frame frame) {
     _scrolling = false;
     _scroll_last = 0.0;
     _blank_frame = true;
+    trackDelayStart(frame);
 }
 
 void MouseListener::setLast(float x, float y) {

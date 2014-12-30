@@ -114,6 +114,7 @@ class MouseListener : public Listener {
     float _lastx, _lasty;
     float _xaccum, _yaccum;
     bool _tracking;
+    float _track_start, _track_delay;
 
     // Scrolling
     float _scroll_last;
@@ -127,7 +128,7 @@ class MouseListener : public Listener {
     void click(unsigned int button);
 
     void scroll(ScrollDirection d);
-    void scrollEnd();
+    void scrollEnd(Frame frame);
 
     // Internal
     void setLast(float x, float y);
@@ -136,7 +137,8 @@ class MouseListener : public Listener {
     float getDistance(Finger finger);
     Vector getXYScale(Finger finger, float distance);
 
-    void doMotion(FingerList fingers);
+    void doMotion(Frame &frame, FingerList fingers);
+    void trackDelayStart(Frame &frame);
 
     void doGestures(Frame);
     void doGesture(Frame, CircleGesture);

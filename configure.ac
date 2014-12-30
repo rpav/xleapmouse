@@ -52,6 +52,9 @@ AC_ARG_ENABLE(debug, [  --enable-debug          enable debugging output [[defaul
 
 dnl Libraries
 AC_LANG(C++)
+AX_CHECK_LIBRARY([ZLIB], [zlib.h], [z],
+                 [LIBLEAP_LDFLAGS="$LIBLEAP_LDFLAGS -lz"],
+                 [AC_MSG_WARN([zlib not found; libLeap.so may depend on this, proceeding anyway...])])
 AX_CHECK_LIBRARY([LIBLEAP], [Leap.h], [Leap], [],
                  [AC_MSG_ERROR([Leap.h or libLeap.so not found.  Did you install the LeapMotion SDK?])])
 
