@@ -48,9 +48,9 @@ MouseListener::MouseListener()
 
     // Tracking
     conf.track_finger        = Finger::TYPE_MIDDLE;
-    conf.distance_cutoff     = 0.10;
-    conf.base_scale          = 10.0;
-    conf.scale_factor        = 30.0;
+    conf.distance_cutoff     = 0.1;
+    conf.base_scale          = 30.0;
+    conf.scale_factor        = 35.0;
     conf.small_motion_cutoff = 0.2;
 
     _blank_frame = true;
@@ -66,9 +66,9 @@ MouseListener::MouseListener()
     conf.lclick_fingers.push_back(Finger::TYPE_INDEX);
     conf.lclick_fingers.push_back(Finger::TYPE_RING);
     conf.rclick_fingers.push_back(Finger::TYPE_THUMB);
-    conf.keytap_mindistance     = 4.0;
+    conf.keytap_mindistance     = 2.0;
     conf.keytap_historyseconds  = 0.1;
-    conf.keytap_mindownvelocity = 1.0;
+    conf.keytap_mindownvelocity = 0.5;
 
     // Scrolling
     conf.scroll_finger = Finger::TYPE_INDEX;
