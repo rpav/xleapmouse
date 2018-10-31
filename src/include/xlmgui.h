@@ -26,7 +26,7 @@
 #include <QtWidgets/QSystemTrayIcon>
 #include <QtWidgets/QMenu>
 
-#include "uic_xlmconfig.h"
+#include "ui_xlm.h"
 #include "xleapmouse.h"
 
 class XLMConfig : public QDialog, private Ui_BaseXLMConfig {

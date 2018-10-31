@@ -32,8 +32,8 @@ available on github).  This has the following features:
 This requires:
 
 * A C++ compiler (e.g., g++)
-* The LeapMotion **v2 beta** SDK.
-* Reasonably new autotools (autoconf, automake)
+* The LeapMotion **V2** SDK.
+* cmake 3.6+ (or probably earlier, picked randomly)
 
 Optionally:
 
@@ -42,23 +42,14 @@ Optionally:
 To build:
 
 ```console
-$ ./autogen
-Processing...
-$ ./configure --with-qt5=/usr/lib/qt5/bin/qmake
-  <lots of stuff>
-$ make
-$ ./src/xleapmouse
+$ git clone https://github.com/rpav/xleapmouse.git
+$ cd xleapmouse/
+$ mkdir build; cd build
+$ cmake .. -DCMAKE_BUILD_TYPE=Release
 ```
 
-The `--with-qt5` parameter is of course optional; if it can't find
-Qt5's `qmake` by itself, or if you specify `--without-qt5`, it will be
-built sans GUI.
+This should detect and build with Qt5 if you have it.  If you have qt5, but *don't* want the gui for whatever reason, you can pass `-DXLEAP_DISABLE_GUI=1` to cmake.
 
-If you *do* specify `--with-qt5=PATH`, **you must specify your
-qmake**, and it will figure everything else out.
-
-Note: *Build in the source directory*.  I like `build/` directories
-too, but there's an automake bug which prevents it in this case.
 
 ## Running
 
@@ -113,6 +104,16 @@ This appears first as a tray icon you can right-click on.  Given you
 need this for `LeapControlPanel`, you probably have it already.  If
 not, and you're not running a desktop environment that has one
 already, try [stalonetray](http://stalonetray.sourceforge.net/).
+
+**I don't see any tray icon.**
+
+You probably don't have qt5 and/or the `-dev` packages installed.  Install this stuff and build.  If it doesn't say `Qt5: Enabled`, you won't have a tray icon.
+
+**It doesn't work!  Or at least, motion sometimes doesn't work but clicking kinda does...**
+
+Try a newer/older version of the SDK.  This seems to happen with the latest as of writing (v2.3.1), with a pretty new Linux dist (Mint 19), and I'm trying to track down the cause.
+
+Running one of the tools like the visualizer seems to help.
 
 **I modified all the settings and it doesn't work very well!**
 

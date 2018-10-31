@@ -16,8 +16,6 @@
   along with xleapmouse.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "defs.h"
-
 #include <stdlib.h>
 #include <unistd.h>
 #include <iostream>
