@@ -16,6 +16,7 @@
   along with xleapmouse.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <iostream>
 #include <math.h>
 #include "xleapmouse.h"
 #include "trivconfig.h"
@@ -59,8 +60,8 @@ MouseListener::MouseListener()
     _xaccum      = 0.0;
     _yaccum      = 0.0;
     _tracking    = true;
-    _track_start = 0.0;
-    _track_delay = 0.05;
+    _track_start = 0;
+    _track_delay = 5000;
 
     // Clicking
     conf.lclick_fingers.push_back(Finger::TYPE_INDEX);
@@ -120,7 +121,7 @@ void MouseListener::onFrame(const Controller &c) {
 
     doGestures(frame);
 
-    if((frame.timestamp()/1000000.0 - _track_start) > _track_delay)
+    if((frame.timestamp() - _track_start) > _track_delay)
         doMotion(frame, hand.fingers());
 }
 
@@ -150,7 +151,7 @@ void MouseListener::doMotion(Frame &frame, FingerList fingers) {
 }
 
 void MouseListener::trackDelayStart(Frame &frame) {
-    _track_start = frame.timestamp()/1000000.0;
+    _track_start = frame.timestamp();
     _blank_frame = true;
 }
 

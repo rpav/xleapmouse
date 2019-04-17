@@ -114,7 +114,7 @@ class MouseListener : public Listener {
     float _lastx, _lasty;
     float _xaccum, _yaccum;
     bool _tracking;
-    float _track_start, _track_delay;
+    uint64_t _track_start, _track_delay;
 
     // Scrolling
     float _scroll_last;
