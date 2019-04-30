@@ -46,6 +46,10 @@ $ git clone https://github.com/rpav/xleapmouse.git
 $ cd xleapmouse/
 $ mkdir build; cd build
 $ cmake .. -DCMAKE_BUILD_TYPE=Release
+  : ...
+$ make
+  : ...
+$ make install
 ```
 
 This should detect and build with Qt5 if you have it.  If you have qt5, but *don't* want the gui for whatever reason, you can pass `-DXLEAP_DISABLE_GUI=1` to cmake.

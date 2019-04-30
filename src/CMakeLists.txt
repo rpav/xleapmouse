@@ -46,3 +46,5 @@ if(Qt5Widgets_LIBRARIES)
     PRIVATE Qt5::Widgets
     )
 endif()
+
+install(TARGETS xleapmouse)
